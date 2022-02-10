@@ -1,9 +1,16 @@
 const STORE = {
-    products: [],
-    categories:[]
+    products: [
+        
+        ],
+    categories:[
+        
+        ],
+        currentCategory:"0",
+        currentFilter:"0",
+        currentProducts:[],
+        currentQuery:"",
+        currentPagina:"1",
+        query:false
   };
-  
-  STORE.products = JSON.parse(localStorage.getItem("items")) || [];
-  STORE.categories = JSON.parse(localStorage.getItem("items")) || [];
   
   export { STORE };
