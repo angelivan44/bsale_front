@@ -17,7 +17,7 @@ export default function Main(parentElement) {
             <img class="object-cover h-20 w-40" src="https://dojiw2m9tvv09.cloudfront.net/16738/2/logobsale-open-graph8239.jpg">
         <select id="select-js" class="form-select appearance-none block px-3 h-10 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat
         border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-        <option selected value="0">select an category</option>
+        <option selected value="0">select a category</option>
             ${STORE.categories.map((ele) => `<option value="${ele.id}">${ele.name}</option>`).join(" ")}
         </select>
 
