@@ -1,5 +1,6 @@
 import { searchProduct } from "../app/services/seach_service.js"
 import { STORE } from "../app/store.js"
+import Main from "./main.js"
 
 function  inputChangeEvent (e, context) {
     e.preventDefault()
@@ -52,4 +53,14 @@ function filterChangeEvent(e,context){
     context.renderProducts()
 }
 
-export {inputChangeEvent, buttonClickEvent , selectChangeEvent, filterChangeEvent}
+function paginationClickEvent (e,context) {
+    const movePage = e.target.textContent
+    STORE.currentPage = movePage
+    context.pagina = movePage
+    const main = Main(".container-js")
+    main.render()
+}
+
+
+
+export {inputChangeEvent, buttonClickEvent , selectChangeEvent, filterChangeEvent , paginationClickEvent}

@@ -1,5 +1,5 @@
 import { STORE } from "../app/store.js";
-import Main from "./main.js";
+import { paginationClickEvent } from "./events.js";
 
 export default function pagination(parentElement, elements) {
     const numerPages = Math.ceil(elements / 8)
@@ -26,17 +26,9 @@ export default function pagination(parentElement, elements) {
         },
 
         addListenerPagination: function () {
-
             const elements = document.querySelectorAll(".pag-js")
             elements.forEach((element) => {
-                element.addEventListener("click", (e) => {
-                    const movePage = e.target.textContent
-                    STORE.currentPage = movePage
-                    this.pagina = movePage
-                    const main = Main(".container-js")
-                    main.render()
-
-                })
+                element.addEventListener("click", (e) => paginationClickEvent(e,this))
             })
         },
 
