@@ -9,7 +9,7 @@ const STORE = {
         currentFilter:"0",
         currentProducts:[],
         currentQuery:"",
-        currentPagina:"1",
+        currentPage:"1",
         query:false
   };
   

@@ -25,7 +25,6 @@ function  inputChangeEvent (e, context) {
     else {
         context.query = false;
         STORE.query = false;
-        context.currentPage = 1
         context.render()
     }
 }
@@ -36,6 +35,8 @@ function  buttonClickEvent (e, context) {
     STORE.query = false
     context.currentQuery = ""
     STORE.currentQuery = ""
+    context.currentPage = 1
+    STORE.currentPage = 1
     context.render()
 }
 

@@ -1,7 +1,7 @@
-import { searchProduct } from "../app/services/seach_service.js";
 import { STORE } from "../app/store.js";
 import { buttonClickEvent, filterChangeEvent, inputChangeEvent, selectChangeEvent } from "./events.js";
 import pagination from "./pagination.js";
+import { filterDataFunction, sortedDataFunction } from "./processData.js";
 import renderProducts from "./products.js";
 
 export default function Main(parentElement) {
@@ -38,7 +38,7 @@ export default function Main(parentElement) {
             </svg>
             <input type="text" value="${this.currentQuery}" name="input" class="input-js input border h-10 border-gray-400 appearance-none rounded w-full px-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600">
             </div>
-            <button class="icon button-js flex items-center justify-center w-full gap-2" name = "button">
+            <button class="w-50 h-50 button-js flex items-center justify-center w-full gap-2" name = "button">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
           </svg>
@@ -70,50 +70,20 @@ export default function Main(parentElement) {
             } else {
                 dataInit = this.filterData(this.store.currentProducts, this.store.currentCategory)
             }
-            const sortedInit = this.sortProducts(dataInit, this.store.currentFilter, this.store.currentPagina)
+            const sortedInit = this.sortProducts(dataInit, this.store.currentFilter, this.store.currentPage)
             const renProducts = this.rendProd(".main-js", sortedInit)
             renProducts.render()
-            const renPagination = this.rendPagination(".pagination-js", dataInit.length, this.store.currentPagina)
+            const renPagination = this.rendPagination(".pagination-js", dataInit.length, this.store.currentPage)
             renPagination.render()
         },
 
-        filterData: function (data, category) {
-            let filterData = []
-            if (category != "0") {
-                filterData = data.filter((ele) => ele.category == category)
-            }
-            else {
-                filterData = data
-            }
-            return filterData
-        },
-
-        sortProducts: function (data, filter, pagination) {
-            let pag = parseInt(pagination)
-            let filterData = []
-            switch (filter) {
-                case "0":
-                    filterData = data.sort((a, b) => a.name > b.name && 1 || -1)
-                    break;
-                case "1":
-                    filterData = data.sort((a, b) => a.price - b.price)
-                    break;
-                case "2":
-                    filterData = data.sort((a, b) => a.discount - b.discount)
-                    break;
-                case "3":
-                    filterData = data.sort((a, b) => a.category - b.category)
-                    break;
-                default:
-                    filterData = data.sort()
-            }
-            return filterData.slice((pag - 1) * 8, pag * 8)
-        },
+        filterData: filterDataFunction,
+        sortProducts:sortedDataFunction,
         addListenerQuery: function () {
             const input = document.querySelector(".input-js")
             const button = document.querySelector(".button-js")
             button.addEventListener("click", (e) => buttonClickEvent(e,this))
-            input.addEventListener("change", (e)=>inputChangeEvent(e,this))
+            input.addEventListener("change", (e )=> inputChangeEvent(e,this))
         }
     }
 }

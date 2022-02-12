@@ -6,7 +6,7 @@ export default function pagination(parentElement, elements) {
     const arrayDates = Array.from({ length: numerPages }, (x, i) => i)
     return {
         parent: document.querySelector(parentElement),
-        pagina: STORE.currentPagina,
+        pagina: STORE.currentPage,
 
         render: function () {
             let html = `
@@ -31,7 +31,7 @@ export default function pagination(parentElement, elements) {
             elements.forEach((element) => {
                 element.addEventListener("click", (e) => {
                     const movePage = e.target.textContent
-                    STORE.currentPagina = movePage
+                    STORE.currentPage = movePage
                     this.pagina = movePage
                     const main = Main(".container-js")
                     main.render()
