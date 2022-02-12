@@ -1,5 +1,6 @@
 import { searchProduct } from "../app/services/seach_service.js";
 import { STORE } from "../app/store.js";
+import { buttonClickEvent, filterChangeEvent, inputChangeEvent, selectChangeEvent } from "./events.js";
 import pagination from "./pagination.js";
 import renderProducts from "./products.js";
 
@@ -57,16 +58,9 @@ export default function Main(parentElement) {
         addSelecterlistener: function () {
             const selectCatergory = document.querySelector("#select-js")
             const selectFilter = document.querySelector("#filter-js")
-            selectCatergory.addEventListener("change", (e) => {
-                STORE.currentCategory = e.target.value
-                STORE.currentPagina = 1
-                this.renderProducts()
-            })
+            selectCatergory.addEventListener("change", (e) => selectChangeEvent(e,this))
 
-            selectFilter.addEventListener("change", (e) => {
-                STORE.currentFilter = e.target.value
-                this.renderProducts()
-            })
+            selectFilter.addEventListener("change", (e) => filterChangeEvent(e,this))
         },
 
         renderProducts: function () {
@@ -118,43 +112,8 @@ export default function Main(parentElement) {
         addListenerQuery: function () {
             const input = document.querySelector(".input-js")
             const button = document.querySelector(".button-js")
-            
-            button.addEventListener("click", (e) => {
-                e.preventDefault();
-                this.query = false
-                STORE.query = false
-                this.currentQuery = ""
-                STORE.currentQuery = ""
-                this.render()
-            })
-            input.addEventListener("change", (e) => {
-                e.preventDefault()
-                const valueChange = e.target.value
-                this.currentQuery = valueChange
-                STORE.currentQuery = valueChange
-                this.currentPage = 1
-                STORE.currentPage = 1
-                this.currentCategory = 0
-                STORE.currentCategory = 0
-                if (valueChange) {
-                    let idDebounce
-                    if (idDebounce) {
-                        clearTimeout(idDebounce)
-                    }
-                    idDebounce = setTimeout(async () => {
-                        this.query = true
-                        STORE.query = true
-                        STORE.currentProducts = await searchProduct(valueChange)
-                        this.render()
-                    }, 300)
-                }
-                else {
-                    this.query = false;
-                    STORE.query = false;
-                    this.currentPage = 1
-                    this.render()
-                }
-            })
+            button.addEventListener("click", (e) => buttonClickEvent(e,this))
+            input.addEventListener("change", (e)=>inputChangeEvent(e,this))
         }
     }
 }
