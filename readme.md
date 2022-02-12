@@ -17,16 +17,15 @@ https://musing-leavitt-5e38ce.netlify.app/
 
 select a category
 click in the list of categories\
-![image](https://user-images.githubusercontent.com/63087240/153522850-b74ae46e-3ca3-4aa8-8ca4-27047d6346f4.png)
+![image](https://user-images.githubusercontent.com/63087240/153694657-93272b18-399c-46b4-a0b1-dcd775c720f1.png)
 
 filter
 click in the list of filters\
-![image](https://user-images.githubusercontent.com/63087240/153522866-910311d1-5506-4239-9d9f-9d169ab984fa.png)
+![image](https://user-images.githubusercontent.com/63087240/153694668-da2c4dc7-be31-4611-8b83-4d1825003aaa.png)
 
 search something
 wrting something in the input field\
-![image](https://user-images.githubusercontent.com/63087240/153522908-5ba6b37e-56e6-40a6-b7b9-a4a6a8fe4312.png)
+![image](https://user-images.githubusercontent.com/63087240/153694698-7c1c407d-ab5a-42b7-b21d-c73d555908d2.png)
 
 change the page
 click in the page icon\
-![image](https://user-images.githubusercontent.com/63087240/153523010-a6d0bb70-9730-4b5c-9424-5f0907512df8.png)
